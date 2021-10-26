@@ -47,3 +47,21 @@ EXPLAIN ANALYZE
 SELECT *
 FROM customers
 WHERE customer_id < 100;
+
+CREATE INDEX orders_customer_id_book_id_idx ON
+orders(customer_id, book_id);
+
+DROP INDEX IF EXISTS orders_customer_id_book_id_idx;
+
+EXPLAIN ANALYZE 
+SELECT * FROM orders
+WHERE customer_id BETWEEN 100 AND 200 
+  AND book_id BETWEEN 50 AND 70;
+
+CREATE INDEX orders_customer_id_book_id_quantity_idx 
+ON orders(customer_id, book_id, quantity);
+
+EXPLAIN ANALYZE 
+SELECT * FROM orders
+WHERE customer_id BETWEEN 100 AND 200 
+  AND book_id BETWEEN 50 AND 70;
