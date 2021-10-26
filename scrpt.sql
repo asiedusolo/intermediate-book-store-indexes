@@ -65,3 +65,20 @@ EXPLAIN ANALYZE
 SELECT * FROM orders
 WHERE customer_id BETWEEN 100 AND 200 
   AND book_id BETWEEN 50 AND 70;
+
+CREATE INDEX books_author_title_idx ON books(author, title);
+
+EXPLAIN ANALYZE 
+SELECT * 
+FROM orders
+WHERE quantity * price_base > 100;
+
+CREATE INDEX orders_total_price_greater_than_100 
+ON orders ((quantity * price_base > 100));
+
+EXPLAIN ANALYZE 
+SELECT * 
+FROM orders
+WHERE quantity * price_base > 100;
+
+CREATE INDEX customers_last_name_first_name_email_address ON customers (last_name, first_name, email_address);
