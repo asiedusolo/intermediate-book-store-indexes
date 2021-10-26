@@ -40,3 +40,10 @@ EXPLAIN ANALYZE
 SELECT *
 FROM customers
 WHERE customer_id < 100;
+
+ALTER TABLE customers ADD CONSTRAINT customers_pkey PRIMARY KEY(customer_id);
+
+EXPLAIN ANALYZE
+SELECT *
+FROM customers
+WHERE customer_id < 100;
